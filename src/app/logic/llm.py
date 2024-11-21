@@ -22,6 +22,11 @@ def create_llm(model_name: str = "gpt-4o-mini") -> ChatOpenAI:
         ChatOpenAI: The configured LLM instance.
     """
     tools = [get_weather]
-    model = ChatOpenAI(model=model_name)
+    model = ChatOpenAI(model=model_name, base_url="https://open.bigmodel.cn/api/paas/v4")
     model = model.bind_tools(tools)
     return model
+
+
+if __name__ == "__main__":
+    llm = create_llm("GLM-4-Flash")
+    print(llm.invoke("What is the weather in Munich?"))

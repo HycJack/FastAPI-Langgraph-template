@@ -6,7 +6,7 @@ from app.states.rag_state import AgentState
 
 async def llm_node(state: AgentState):
     print("State in llm node:", state)
-    llm = create_llm()
+    llm = create_llm("GLM-4-Flash")
 
     if not state.get("messages"):
         state["messages"] = []

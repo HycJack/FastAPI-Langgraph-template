@@ -5,7 +5,7 @@ from langchain_openai import OpenAIEmbeddings
 
 load_dotenv()
 
-embedding_function = OpenAIEmbeddings()
+embedding_function = OpenAIEmbeddings(model="BAAI/bge-large-zh-v1.5", openai_api_base="https://api.siliconflow.cn/v1")
 
 docs = [
     Document(
@@ -27,3 +27,7 @@ docs = [
 ]
 
 db = Chroma.from_documents(docs, embedding_function)
+
+
+if __name__ == "__main__":
+    print(db.similarity_search("What is Bella Vista's price range?", k=2))
